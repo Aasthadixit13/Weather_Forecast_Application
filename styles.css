@@ -1,0 +1,83 @@
+/* Set font family */
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/*Bounce animation */
+@keyframes bounce-slow {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+/* City card hover effects */
+.city-card {
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.city-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Gradient background */
+.default-bg {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.85), rgba(139, 92, 246, 0.85)),
+    url('assets/images/bg_img_1.avif');
+  background-size: cover;
+  background-position: center;
+}
+
+/* Rainy background */
+.rainy-bg {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.85), rgba(55, 65, 81, 0.85)),
+    url('assets/images/bg_img_2.avif');
+  background-size: cover;
+  background-position: center;
+}
+
+/* Horizontal scroll */
+html,
+body {
+  overflow-x: hidden;
+}
+
+/* Glass card effect */
+.glass-card {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.glass-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+}
+
+/* Small screen padding */
+@media (max-width: 640px) {
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+/* Bounce animation */
+@keyframes bounce-slow {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
