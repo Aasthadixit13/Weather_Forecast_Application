@@ -50,6 +50,16 @@ async function getCurrentLocationWeather() {
     }
 }
 
+// Fetch 5-day forecast data
+async function fetchForecast(city) {
+    try {
+        const response = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=${isCelsius ? 'metric' : 'imperial'}`);
+        const data = await response.json();
+        displayForecast(data, city);
+    } catch (error) {
+        console.error('Error fetching forecast:', error);
+    }
+}
 
 // Display weather data
 function displayWeather(data) {
