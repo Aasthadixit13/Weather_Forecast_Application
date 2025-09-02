@@ -91,3 +91,35 @@ function displayWeather(data) {
     weatherInfo.classList.remove('hidden');
     errorInfo.classList.add('hidden');
 }
+// Display 5-day forecast
+function displayForecast(data, city) {
+    forecastTitle.textContent = `5-Day Forecast for ${city}`;
+    forecastContainer.innerHTML = '';
+
+    const forecasts = [];
+    for (let i = 0; i < data.list.length; i += 8) {
+        forecasts.push(data.list[i]);
+    }
+
+    forecasts.forEach(item => {
+        if (item) {  // Ensure item exists
+            const date = new Date(item.dt * 1000).toLocaleDateString();
+            const desc = item.weather[0].description;
+            const temp = item.main.temp;
+            const humidity = item.main.humidity;
+            const wind = item.wind.speed;
+            const icon = getWeatherIcon(item.weather[0].main);
+
+            const article = document.createElement('article');
+article.classList.add('city-card', 'glass-card', 'bg-white/70', 'backdrop-blur-md', 'rounded-lg', 'p-2', 'sm:p-3', 'shadow-inner');
+article.innerHTML = `
+    <h3 class="text-sm sm:text-base md:text-base lg:text-lg font-bold"><i class="${icon} mr-2"></i>${date}</h3>
+    <p class="text-xs sm:text-sm md:text-sm lg:text-base">${desc}</p>
+    <p class="text-xs sm:text-sm md:text-sm lg:text-base"><i class="fas fa-thermometer-half mr-1"></i>Temp: ${temp}°${isCelsius ? 'C' : 'F'}</p>
+    <p class="text-xs sm:text-sm md:text-sm lg:text-base"><i class="fas fa-tint mr-1"></i>Humidity: ${humidity}%</p>
+    <p class="text-xs sm:text-sm md:text-sm lg:text-base"><i class="fas fa-wind mr-1"></i>Wind: ${wind} m/s</p>
+`;
+forecastContainer.appendChild(article);
+        }
+    });
+}
