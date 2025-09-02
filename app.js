@@ -29,6 +29,26 @@ async function fetchWeather(city) {
     }
 }
 
+// Fetch weather data based on current location
+async function getCurrentLocationWeather() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(async (position) => {
+            const lat = position.coords.latitude;
+            const lon = position.coords.longitude;
+
+            try {
+                const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=${isCelsius ? 'metric' : 'imperial'}`);
+                const data = await response.json();
+                displayWeather(data);
+                await fetchForecast(data.name);
+            } catch (error) {
+                displayError('Unable to fetch weather data for your location.');
+            }
+        });
+    } else {
+        displayError('Geolocation is not supported by this browser.');
+    }
+}
 
 
 // Display weather data
