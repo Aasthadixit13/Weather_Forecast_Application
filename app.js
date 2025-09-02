@@ -134,3 +134,35 @@ unitToggleBtn.addEventListener('click', () => {
     }
     unitToggleBtn.textContent = `Switch to ${isCelsius ? '°F' : '°C'}`;
 });
+
+// Store city in localStorage and add it to the dropdown
+function addCityToDropdown(cityName) {
+    let recentCities = JSON.parse(localStorage.getItem('recentCities')) || [];
+    if (!recentCities.includes(cityName)) {
+        recentCities.push(cityName);
+        localStorage.setItem('recentCities', JSON.stringify(recentCities));
+    }
+    updateCityDropdown();
+}
+
+// Update the city dropdown with recently searched cities
+function updateCityDropdown() {
+    const recentCities = JSON.parse(localStorage.getItem('recentCities')) || [];
+    cityDropdown.innerHTML = '<option value="" disabled selected>Select Recently Searched City</option>';
+
+    recentCities.forEach(city => {
+        const option = document.createElement('option');
+        option.value = city;
+        option.textContent = city;
+        cityDropdown.appendChild(option);
+    });
+
+    if (recentCities.length === 0) {
+        cityDropdown.classList.add('hidden');
+    } else {
+        cityDropdown.classList.remove('hidden');
+    }
+
+    cityDropdown.removeEventListener('change', handleDropdownChange);
+    cityDropdown.addEventListener('change', handleDropdownChange);
+}
