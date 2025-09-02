@@ -196,3 +196,10 @@ function handleDropdownChange() {
         fetchWeather(selectedCity);
     }
 }
+// Load the dropdown with recently searched cities when the page loads
+window.onload = () => {
+    updateCityDropdown();
+};
+
+// Handle the current location weather button click
+getLocationWeatherBtn.addEventListener('click', getCurrentLocationWeather);
