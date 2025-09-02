@@ -123,3 +123,14 @@ forecastContainer.appendChild(article);
         }
     });
 }
+
+
+// Toggle temperature unit between Celsius and Fahrenheit
+unitToggleBtn.addEventListener('click', () => {
+    isCelsius = !isCelsius;
+    const city = cityInput.value.trim() || cityDropdown.value;
+    if (city) {
+        fetchWeather(city);
+    }
+    unitToggleBtn.textContent = `Switch to ${isCelsius ? '°F' : '°C'}`;
+});
