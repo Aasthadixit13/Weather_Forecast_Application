@@ -28,3 +28,36 @@ async function fetchWeather(city) {
         displayError(error.message);
     }
 }
+
+
+
+// Display weather data
+function displayWeather(data) {
+    const { name, main, weather, wind } = data;
+
+    // Display weather info
+    document.getElementById('cityName').textContent = name;
+    document.getElementById('description').textContent = weather[0].description;
+    document.getElementById('temperature').textContent = `${main.temp}°${isCelsius ? 'C' : 'F'}`;
+    document.getElementById('humidity').textContent = `Humidity: ${main.humidity}%`;
+    document.getElementById('windSpeed').textContent = `Wind: ${wind.speed} m/s`;
+
+    // Dynamic background for rainy conditions
+    document.body.classList.remove('rainy-bg');
+    document.body.classList.add('default-bg');
+    if (weather[0].main.toLowerCase().includes('rain')) {
+        document.body.classList.remove('default-bg');
+        document.body.classList.add('rainy-bg');
+    }
+
+    // Check for extreme temperature and show UI alert
+    if ((isCelsius && main.temp > 40) || (!isCelsius && main.temp > 104)) {
+        extremeAlert.textContent = 'Extreme temperature! Be cautious!';
+        extremeAlert.classList.remove('hidden');
+    } else {
+        extremeAlert.classList.add('hidden');
+    }
+
+    weatherInfo.classList.remove('hidden');
+    errorInfo.classList.add('hidden');
+}
