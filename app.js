@@ -123,7 +123,12 @@ forecastContainer.appendChild(article);
         }
     });
 }
-
+// Handle error message
+function displayError(message) {
+    errorInfo.textContent = message;
+    errorInfo.classList.remove('hidden');
+    weatherInfo.classList.add('hidden');
+}
 
 // Toggle temperature unit between Celsius and Fahrenheit
 unitToggleBtn.addEventListener('click', () => {
