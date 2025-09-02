@@ -138,6 +138,15 @@ function displayError(message) {
     errorInfo.classList.remove('hidden');
     weatherInfo.classList.add('hidden');
 }
+// Handle button click to fetch weather for a city
+getWeatherBtn.addEventListener('click', () => {
+    const city = cityInput.value.trim();
+    if (city) {
+        fetchWeather(city);
+    } else {
+        displayError('Please enter a valid city name.');
+    }
+});
 
 // Toggle temperature unit between Celsius and Fahrenheit
 unitToggleBtn.addEventListener('click', () => {
