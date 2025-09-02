@@ -189,3 +189,10 @@ function updateCityDropdown() {
     cityDropdown.removeEventListener('change', handleDropdownChange);
     cityDropdown.addEventListener('change', handleDropdownChange);
 }
+// Handle city selection from dropdown
+function handleDropdownChange() {
+    const selectedCity = cityDropdown.value;
+    if (selectedCity) {
+        fetchWeather(selectedCity);
+    }
+}
