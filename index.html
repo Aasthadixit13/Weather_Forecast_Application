@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Weather dashboard displaying city weather data and search functionality">
+    <meta name="author" content="Weather App">
+    <title>Weather Dashboard</title>
+
+    <!-- TailwindCSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.0/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="default-bg min-h-screen font-sans text-white">
+
+    <!-- Header Section -->
+    <header class="bg-gradient-to-r from-rose-800/80 to-red-900/80 text-center py-4 rounded-b-3xl shadow-lg">
+        <h1 class="text-3xl sm:text-4xl font-bold tracking-wide animate-[bounce-slow_3s_infinite] drop-shadow-lg">🌤
+            Weather Dashboard</h1>
+        <p class="text-sm sm:text-lg opacity-90 mt-2">Real-time weather updates for your favorite cities</p>
+    </header>
+
+    <!-- Main Content Section -->
+    <main class="container mx-auto px-4 sm:px-6 md:px-8 py-6 flex flex-col lg:flex-row gap-6 justify-center">
+
+        <!-- Left Side: 5-Day Forecast -->
+        <section
+            class="w-full lg:w-4/12 p-4 glass-card rounded-2xl shadow-xl h-[500px] md:h-[550px] lg:h-[600px] overflow-y-auto">
+            <h2 id="forecastTitle" class="text-lg sm:text-xl font-semibold mb-4 text-indigo-100">5-Day Forecast</h2>
+            <div id="forecastContainer" class="space-y-3">
+                <!-- Forecast data will be added here -->
+            </div>
+        </section>
+
+        <!-- Right Side: Search City Weather -->
+        <aside
+            class="w-full lg:w-4/12 p-4 glass-card rounded-2xl shadow-xl h-[500px] md:h-[550px] lg:h-[600px] overflow-y-auto">
+            <h2 class="text-lg sm:text-xl font-semibold mb-4 text-indigo-100">Search City Weather</h2>
+            <div class="space-y-3">
+
+                <!-- City Name Input -->
+                <input type="text" id="cityInput" placeholder="Enter city name"
+                    class="w-full p-2 rounded-lg border border-white/40 bg-white/10 text-gray-900 placeholder-gray-400 shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-300 transition duration-200 text-sm" />
+
+                <!-- Get Weather Button -->
+                <button id="getWeatherBtn"
+                    class="w-full bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-indigo-600 hover:to-purple-600 text-white py-2 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-300 transition duration-300 transform hover:scale-105 text-sm">
+                    <i class="fas fa-search mr-2"></i>Get Weather
+                </button>
+
+                <!-- Temperature Unit Toggle Button -->
+                <button id="unitToggleBtn"
+                    class="w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-2 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-indigo-300 transition duration-300 transform hover:scale-105 text-sm">
+                    <i class="fas fa-thermometer-half mr-2"></i>Switch to °F
+                </button>
+
+                <!-- Recently Searched Cities Dropdown -->
+                <select id="cityDropdown"
+                    class="w-full p-2 rounded-lg border border-white/40 bg-white/10 text-gray-900 shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-300 transition duration-200 text-sm">
+                    <option value="">Select Recently Searched City</option>
+                </select>
+
+                <!-- Get Current Location Weather Button -->
+                <button id="getLocationWeatherBtn"
+                    class="w-full bg-gradient-to-r from-green-400 to-teal-500 text-white py-2 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-green-300 transition duration-300 transform hover:scale-105 text-sm">
+                    <i class="fas fa-map-marker-alt mr-2"></i>Get Current Location Weather
+                </button>
+
+                <!-- Weather Info Result (Hidden Initially) -->
+                <div id="weatherInfo" class="hidden glass-card rounded-lg shadow-inner space-y-3 p-4 text-center">
+                    <h3 class="text-xl font-bold" id="cityName"></h3>
+                    <p class="text-sm" id="description"></p>
+                    <p class="text-2xl font-semibold" id="temperature"></p>
+                    <p class="text-sm" id="humidity"></p>
+                    <p class="text-sm" id="windSpeed"></p>
+                    <!-- Weather Alerts -->
+                    <div id="extremeAlert"
+                        class="hidden bg-yellow-200/80 border border-yellow-300 text-yellow-900 px-4 py-3 rounded text-sm font-semibold">
+                    </div>
+                </div>
+
+                <!-- Error Message (Hidden Initially) -->
+                <div id="error"
+                    class="hidden bg-red-200/80 border border-red-400 text-red-900 px-4 py-3 rounded text-center text-sm font-semibold">
+                </div>
+            </div>
+        </aside>
+    </main>
+
+    <!-- JavaScript File -->
+    <script src="app.js"></script>
+</body>
+
+</html>
