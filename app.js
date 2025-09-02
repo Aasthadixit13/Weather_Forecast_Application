@@ -123,6 +123,15 @@ forecastContainer.appendChild(article);
         }
     });
 }
+// Get weather icon based on condition
+function getWeatherIcon(main) {
+    switch (main) {
+        case 'Clear': return 'fas fa-sun text-yellow-500';
+        case 'Clouds': return 'fas fa-cloud text-gray-500';
+        case 'Rain': return 'fas fa-cloud-rain text-blue-500';
+        default: return 'fas fa-cloud-sun text-yellow-600';
+    }
+}
 // Handle error message
 function displayError(message) {
     errorInfo.textContent = message;
